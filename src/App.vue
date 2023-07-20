@@ -4,7 +4,7 @@
   </div>
   <MarsMap :url="configUrl" map-key="test" @onload="marsOnload" />
 </template>
-
+<!-- todo:将map 传参 provide 其他页面reject接收  路径贴地线，各种计算测量，军标 -->
 <script setup lang="ts">
 import * as mars3d from "mars3d";
 import MarsMap from "./components/mars-work/mars-map.vue";
@@ -17,12 +17,12 @@ const addDemoGraphics = () => {
     symbol: {
       type: "polygon",
       styleOptions: {
-        materialType: mars3d.MaterialType.PolyGradient, // 重要参数，指定材质
-        materialOptions: {
-          color: "#3388cc",
-          opacity: 0.7,
-          // alphaPower: 1.3
-        },
+        materialType: mars3d.MaterialType.PolyGradient, // 效果：中间区域渐变透明
+        // materialOptions: {
+        //   color: "#3388cc",
+        //   opacity: 0.7,
+        //   // alphaPower: 1.3
+        // },
         outline: false,
         outlineColor: "#ffffff",
         // 面中心点，显示文字的配置
