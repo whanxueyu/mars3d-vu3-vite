@@ -3,25 +3,6 @@
     <div class="common-layout">
         <el-container>
             <el-header style="z-index: 9;">
-                <!-- <el-menu :default-active="menu.activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
-                @select="handleSelect" background-color="#0000064" text-color="#fff" active-text-color="#02ffff">
-                <div class="flex-grow" />
-                <template v-for="menu in menu.routes" :key="menu.path">
-                    <el-sub-menu :index="menu.path" v-if="menu.children && menu.children.length">
-                        <template #title>
-                            <span>{{ menu.meta.name }}</span>
-                        </template>
-                        <template v-for="item in menu.children" :key="item.path">
-                            <el-menu-item :index="item.path" @click="navto(item)">
-                                <span>{{ item.meta.name }}</span>
-                            </el-menu-item>
-                        </template>
-                    </el-sub-menu>
-                    <el-menu-item :index="menu.path" @click="navto(menu)" v-else>
-                        <span>{{ menu.meta.name }}</span>
-                    </el-menu-item>
-                </template>
-            </el-menu> -->
                 <div class="head">
                     <div class="sidetext">作战时间：{{ formatted }}</div>
                     <div class="maintitle">三维数字沙盘</div>
@@ -35,19 +16,46 @@
             </el-main>
             <el-footer>
                 <div class="circle">
-                    <div class="home" @click="showMenu = !showMenu">home</div>
-                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu1']">1</div>
-                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu2']">2</div>
-                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu3']">3</div>
-                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu4']">4</div>
-                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu5']">5</div>
+                    <div class="home" @click="showMenu = !showMenu"><el-icon><HomeFilled /></el-icon></div>
+                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu1']"><el-icon><Expand /></el-icon></div>
+                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu2']"><el-icon><PieChart /></el-icon></div>
+                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu3']"><el-icon><ChatDotSquare /></el-icon></div>
+                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu4']"><el-icon><Place /></el-icon></div>
+                    <div :class="[showMenu ? '' : 'hidden', 'menu_cell menu5']"><el-icon><SwitchButton /></el-icon></div>
                 </div>
                 <div class="center">
                     <dv-border-box13 backgroundColor="#02556999">
-                        <div>右边菜单</div>
+                        <div class="row">
+                            <dv-button color="#60ccc0" :bg="false" @click="">
+                                <el-icon class="icon"><ChatDotSquare /></el-icon>
+                                <div>兵要地志</div>
+                            </dv-button>
+                            <dv-button color="#60ccc0" :bg="false" @click="">
+                                <el-icon class="icon"><ChatDotSquare /></el-icon>
+                                <div>视频录像</div>
+                            </dv-button>
+                            <dv-button color="#60ccc0" :bg="false" @click="">
+                                <el-icon class="icon"><ChatDotSquare /></el-icon>
+                                <div>战场环境</div>
+                            </dv-button>
+                        </div>
                     </dv-border-box13>
-                    <dv-border-box13  style="transform: rotateY(180deg)" backgroundColor="#02556999">
-                        <div style="transform: rotateY(180deg)">左边菜单</div>
+                    <div></div>
+                    <dv-border-box13 style="transform: rotateY(180deg)" backgroundColor="#02556999">
+                        <div style="transform: rotateY(180deg)" class="row">
+                            <dv-button color="#60ccc0" :bg="false" @click="">
+                                <el-icon class="icon"><ChatDotSquare /></el-icon>
+                                <div>路径规划</div>
+                            </dv-button>
+                            <dv-button color="#60ccc0" :bg="false" @click="">
+                                <el-icon class="icon"><ChatDotSquare /></el-icon>
+                                <div>空间量算</div>
+                            </dv-button>
+                            <dv-button color="#60ccc0" :bg="false" @click="">
+                                <el-icon class="icon"><ChatDotSquare /></el-icon>
+                                <div>战术计算</div>
+                            </dv-button>
+                        </div>
                     </dv-border-box13>
                 </div>
             </el-footer>
@@ -59,10 +67,16 @@ import { onMounted, reactive, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMenu } from '../../store/menu'
 import { useNow, useDateFormat } from '@vueuse/core'
+import * as mars3d from "mars3d";
+import {HomeFilled,Expand,PieChart,ChatDotSquare,Place,SwitchButton} from '@element-plus/icons-vue'
 export default {
+    components:{
+        HomeFilled,Expand,PieChart,ChatDotSquare,Place,SwitchButton
+    },
     name: 'public',
     setup() {
         const count = ref(0)
+        const Cesium = mars3d.Cesium;
         const state = reactive({
             routerList: [],
             showMenu: false
@@ -78,6 +92,7 @@ export default {
             router.push(item.path)
             menu.activeIndex = item.path
         }
+        
         onMounted(() => {
             let currentPath = router.currentRoute.value.path
             if (currentPath === "/") {
@@ -125,7 +140,8 @@ export default {
         font-family: emoji;
     }
 }
-.center{
+
+.center {
     position: absolute;
     z-index: 9;
     bottom: 0;
@@ -134,7 +150,18 @@ export default {
     height: 80px;
     width: 800px;
     display: flex;
+
+    .row {
+        height: 60px;
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-evenly;
+        .icon{
+            font-size: 26px;
+        }
+    }
 }
+
 .circle {
     position: absolute;
     z-index: 9;
@@ -150,9 +177,10 @@ export default {
         margin-bottom: -45%;
         background-color: #02556999;
         text-indent: 60px;
-        line-height: 80px;
+        line-height: 90px;
         border: 1px solid #025569;
         cursor: pointer;
+        font-size: 30px;
 
         &:hover {
             background-color: #068aac99;
@@ -167,7 +195,8 @@ export default {
         border-radius: 50%;
         width: 38px;
         text-align: center;
-        line-height: 38px;
+        line-height: 42px;
+        font-size: 20px;
         cursor: pointer;
         transition: all .5s;
         background-color: #02556999;
@@ -241,4 +270,5 @@ export default {
 
 .el-menu-demo {
     overflow-x: auto;
-}</style>
+}
+</style>

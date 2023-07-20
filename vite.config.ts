@@ -7,5 +7,9 @@ export default defineConfig({
   plugins: [
     vue(),
     mars3dPlugin(),
+    
   ],
+  server:{
+    hmr:true
+  }
 });
