@@ -26,7 +26,7 @@
                 <div class="center">
                     <dv-border-box13 backgroundColor="#02556999">
                         <div class="row">
-                            <dv-button color="#60ccc0" :bg="false" @click="">
+                            <dv-button color="#60ccc0" :bg="false" @click="navto({path:'/home'})">
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>兵要地志</div>
                             </dv-button>
@@ -51,7 +51,7 @@
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>空间量算</div>
                             </dv-button>
-                            <dv-button color="#60ccc0" :bg="false" @click="">
+                            <dv-button color="#60ccc0" :bg="false" @click="navto({path:'/mark'})">
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>战术计算</div>
                             </dv-button>
@@ -76,7 +76,6 @@ export default {
     name: 'public',
     setup() {
         const count = ref(0)
-        const Cesium = mars3d.Cesium;
         const state = reactive({
             routerList: [],
             showMenu: false

@@ -47,7 +47,7 @@
       "contextmenu": { "hasDefault": true },
       "mouseDownView": false,
       "zoom": false,
-      "compass": false,
+      "compass": true,
       "distanceLegend": { "right": "250px", "bottom": "2px" },
       "locationBar": {
         "fps": false,

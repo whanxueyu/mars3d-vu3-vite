@@ -22,6 +22,15 @@ const routes:any = [
                     hidden:false
                 },
             },
+            {
+                path: '/mark',
+                name: 'mark',
+                component: () => import('../views/mark/mark.vue'),
+                meta: {
+                    name: '标记',
+                    hidden:false
+                },
+            },
         ]
     },
     // {
