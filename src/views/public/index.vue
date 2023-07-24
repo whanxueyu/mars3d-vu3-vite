@@ -34,7 +34,7 @@
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>视频录像</div>
                             </dv-button>
-                            <dv-button color="#60ccc0" :bg="false" @click="">
+                            <dv-button color="#60ccc0" :bg="false" @click="navto({path:'/div'})">
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>战场环境</div>
                             </dv-button>
@@ -51,7 +51,7 @@
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>空间量算</div>
                             </dv-button>
-                            <dv-button color="#60ccc0" :bg="false" @click="navto({path:'/mark'})">
+                            <dv-button color="#60ccc0" :bg="false" @click="navto({path:'/marks'})">
                                 <el-icon class="icon"><ChatDotSquare /></el-icon>
                                 <div>战术计算</div>
                             </dv-button>

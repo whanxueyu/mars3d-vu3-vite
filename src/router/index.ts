@@ -23,11 +23,20 @@ const routes:any = [
                 },
             },
             {
-                path: '/mark',
-                name: 'mark',
-                component: () => import('../views/mark/mark.vue'),
+                path: '/marks',
+                name: 'marks',
+                component: () => import('../views/marks/marks.vue'),
                 meta: {
-                    name: '标记',
+                    name: '军标',
+                    hidden:false
+                },
+            },
+            {
+                path: '/div',
+                name: 'div',
+                component: () => import('../views/div/div.vue'),
+                meta: {
+                    name: 'div标记',
                     hidden:false
                 },
             },

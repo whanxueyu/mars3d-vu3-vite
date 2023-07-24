@@ -1,7 +1,7 @@
 
 <template>
     <div class="common-layout">
-        <el-button>按钮</el-button>
+        缺少样式、图片等
     </div>
 </template>
 <script lang="ts">
@@ -14,6 +14,7 @@ export default {
     },
     name: 'public',
     setup() {
+        const graphicLayer = ref()
         const map: any = inject('name')
         console.log("map", map)
         const count = ref(0)
@@ -23,12 +24,12 @@ export default {
         })
         const Cesium = mars3d.Cesium;
         // 一个黑色面板，指向左下角黄色连线
-        const addDemoGraphic1 = (graphicLayer) => {
+        const addDemoGraphic1 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: [116.391611, 39.908068, 75.5],
+                position: [117.291611, 39.908068, 75.5],
                 style: {
                     html: `<div class="marsBlackPanel  animation-spaceInDown">
-                                <div class="marsBlackPanel-text">大湖名城,创新高地</div>
+                                <div class="marsBlackPanel-text">某某巡逻部队</div>
                             </div>`,
                     horizontalOrigin: Cesium.HorizontalOrigin.LEFT,
                     verticalOrigin: Cesium.VerticalOrigin.CENTER,
@@ -42,16 +43,16 @@ export default {
                 },
                 attr: { remark: "示例1" }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
         }
 
         // 一个渐变的文本面板,中间竖直连线
-        const addDemoGraphic2 = (graphicLayer) => {
+        const addDemoGraphic2 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: [116.510732, 39.403786, 176.4],
+                position: [117.210732, 39.0903786, 176.4],
                 style: {
                     html: `<div class="marsBlueGradientPnl">
-                                <div>合肥火星科技有限公司</div>
+                                <div>某某驻地</div>
                             </div>`,
                     offsetY: -60,
                     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
@@ -66,15 +67,15 @@ export default {
                 },
                 attr: { remark: "示例2" }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
         }
 
         //
-        const addDemoGraphic3 = (graphicLayer) => {
+        const addDemoGraphic3 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: [116.960075, 31.19609, 237.4],
+                position: [117.110075, 39.19609, 237.4],
                 style: {
-                    html: `<div class="marsGreenGradientPnl" >安徽欢迎您</div>`,
+                    html: `<div class="marsGreenGradientPnl" >三维数字沙盘</div>`,
                     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
                     verticalOrigin: Cesium.VerticalOrigin.BOTTOM
 
@@ -86,13 +87,13 @@ export default {
                 },
                 attr: { remark: "示例3" }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
         }
 
         // 添加GIF图标，DIV方式
-        const addDemoGraphic4 = (graphicLayer) => {
+        const addDemoGraphic4 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: [116.410732, 39.403786, 289],
+                position: [117.150732, 39.1403786, 289],
                 style: {
                     html: '<img src="img/icon/tf.gif" style="width:50px;height:50px;" ></img>',
                     distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000), // 按视距距离显示
@@ -102,13 +103,13 @@ export default {
                 attr: { remark: "示例4" },
                 pointerEvents: false // false时不允许拾取和触发任意鼠标事件，但可以穿透div缩放地球
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
         }
 
         // 加css动画的扩散点 DivLightPoint
-        const addDemoGraphic5 = (graphicLayer) => {
+        const addDemoGraphic5 = () => {
             const graphic = new mars3d.graphic.DivLightPoint({
-                position: [116.630276, 31.213813],
+                position: [117.1630276, 39.13813],
                 style: {
                     color: "#f33349",
                     distanceDisplayCondition: new Cesium.DistanceDisplayCondition(0, 200000), // 按视距距离显示
@@ -117,15 +118,15 @@ export default {
                 attr: { remark: "示例5" },
                 popup: "测试popup"
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
         }
 
         // 内置扩展的动态文本 DivBoderLabel
-        const addDemoGraphic6 = (graphicLayer) => {
+        const addDemoGraphic6 = () => {
             const graphic = new mars3d.graphic.DivBoderLabel({
-                position: [116.460732, 39.403786, 781],
+                position: [117.160732, 39.133786, 781],
                 style: {
-                    text: "火星科技Mars3D平台",
+                    text: "三维数字沙盘",
                     font_size: 15,
                     font_family: "微软雅黑",
                     color: "#ccc",
@@ -133,13 +134,13 @@ export default {
                 },
                 attr: { remark: "示例6" }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
         }
 
         // 内置扩展的竖立文本 DivBoderLabel
-        const addDemoGraphic7 = (graphicLayer) => {
+        const addDemoGraphic7 = () => {
             const graphic = new mars3d.graphic.DivUpLabel({
-                position: [116.327136, 39.69723, 914.6],
+                position: [117.157136, 39.09723, 914.6],
                 style: {
                     text: "我是竖立的文本",
                     color: "#fff",
@@ -151,13 +152,14 @@ export default {
                 },
                 attr: { remark: "示例7" }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
+            console.log('我是竖立的文本')
         }
 
         // 类似popup/toolitp的自定义html
-        const addDemoGraphic8 = (graphicLayer) => {
+        const addDemoGraphic8 = () => {
             const graphic = new mars3d.graphic.Popup({
-                position: [116.146461, 31.380152, 395.1],
+                position: [117.146461, 39.138012, 395.1],
                 style: {
                     html: `这里可以放入任意html代码<br /> Popup和Tooltip也是继承自DivGraphic<br /> {name} {remark}`,
                     templateEmptyStr: " - ",
@@ -174,13 +176,14 @@ export default {
                 },
                 attr: { remark: "示例8" }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
+            console.log('这里可以放入任意html代码')
         }
 
         // 倾斜指向左下角的面板样式
-        const addDemoGraphic9 = (graphicLayer) => {
+        const addDemoGraphic9 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: [116.510232, 39.403786, 1230],
+                position: [117.17510232, 39.1103786, 1230],
                 style: {
                     html: `<div class="marsTiltPanel marsTiltPanel-theme-red">
                             <div class="marsTiltPanel-wrap">
@@ -235,7 +238,7 @@ export default {
                 attr: { remark: "示例9" },
                 pointerEvents: false // false时不允许拾取和触发任意鼠标事件，但可以穿透div缩放地球
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
 
             // 刷新局部DOM,不影响面板的其他控件操作
             // [建议读取到后端接口数据后主动去修改DOM，比下面演示的实时刷新效率高些]
@@ -255,9 +258,9 @@ export default {
         }
 
         // 倾斜指向左下角的面板样式
-        const addDemoGraphic10 = (graphicLayer) => {
+        const addDemoGraphic10 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: [116.228043, 39.882207],
+                position: [117.228043, 39132207],
                 style: {
                     html: `<div class="marsTiltPanel marsTiltPanel-theme-green">
                             <div class="marsTiltPanel-wrap">
@@ -306,22 +309,18 @@ export default {
                     clampToGround: true
                 },
                 attr: { remark: "示例10" },
-                // 可以传入自定义测试点样式
-                // testPoint: {
-                //   color: '#ff0000',
-                //   pixelSize: 8,
-                // },
                 pointerEvents: false // false时不允许拾取和触发任意鼠标事件，但可以穿透div缩放地球
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
+            console.log('大别山水厂')
 
             graphic.testPoint = true // 打开测试点，与DIV点进行对比位置调整css
         }
 
         // 倾斜指向左下角的面板样式
-        const addDemoGraphic11 = (graphicLayer) => {
+        const addDemoGraphic11 = () => {
             const graphic = new mars3d.graphic.DivGraphic({
-                position: Cesium.Cartesian3.fromDegrees(116.706926, 39.945346, 457.5),
+                position: Cesium.Cartesian3.fromDegrees(117.186926, 39.135346, 457.5),
                 style: {
                     html: `<div class="marsTiltPanel marsTiltPanel-theme-blue">
                             <div class="marsTiltPanel-wrap">
@@ -365,13 +364,14 @@ export default {
                     distanceDisplayCondition: new Cesium.DistanceDisplayCondition(1000, 200000) // 按视距距离显示
                 },
                 attr: { remark: "示例11" }
+                
             })
             graphic.on(mars3d.EventType.add, function (event) {
                 const container = event.graphic.container // popup对应的DOM
 
                 const btnStatus1 = container.querySelector("#btn-status1")
                 if (btnStatus1) {
-                    btnStatus1.addEventListener("click", (e) => {
+                    btnStatus1.addEventListener("click", (e:any) => {
                         e.stopPropagation()
                         console.log("您单击了1号水泵")
                     })
@@ -379,17 +379,17 @@ export default {
 
                 const btnStatus2 = container.querySelector("#btn-status2")
                 if (btnStatus2) {
-                    btnStatus2.addEventListener("click", (e) => {
+                    btnStatus2.addEventListener("click", (e:any) => {
                         e.stopPropagation()
                         console.log("您单击了2号水泵")
                     })
                 }
             })
-            graphicLayer.addGraphic(graphic)
+            graphicLayer.value.addGraphic(graphic)
 
             // movePoint(graphic) // 动画移动示例
         }
-        const movePoint = (graphic) => {
+        const movePoint = (graphic:any) => {
             map.clock.shouldAnimate = true
 
             // 动画移动
@@ -400,49 +400,46 @@ export default {
             let tempTime
 
             // 起点
-            const startPoint = Cesium.Cartesian3.fromDegrees(116.706926, 39.945346, 457.5)
+            const startPoint = Cesium.Cartesian3.fromDegrees(117.186926, 39.135346, 457.5)
             tempTime = map.clock.currentTime // 飞行开始时间
             property.addSample(tempTime, startPoint)
 
             // 移动到的第1个目标点
-            const point1 = Cesium.Cartesian3.fromDegrees(116.311439, 39.76485, 423.7)
+            const point1 = Cesium.Cartesian3.fromDegrees(117.211439, 39.16485, 423.7)
             tempTime = Cesium.JulianDate.addSeconds(tempTime, time, new Cesium.JulianDate())
             property.addSample(tempTime, point1)
 
             // 移动到的第2个目标点
-            const point2 = Cesium.Cartesian3.fromDegrees(116.63081, 39.786585, 85)
+            const point2 = Cesium.Cartesian3.fromDegrees(117.1763081, 39.1786585, 85)
             tempTime = Cesium.JulianDate.addSeconds(tempTime, time, new Cesium.JulianDate())
             property.addSample(tempTime, point2)
 
             // 移动到的第3个目标点
-            const point3 = Cesium.Cartesian3.fromDegrees(116.706926, 39.945346, 457.5)
+            const point3 = Cesium.Cartesian3.fromDegrees(117.186926, 39.135346, 457.5)
             tempTime = Cesium.JulianDate.addSeconds(tempTime, time, new Cesium.JulianDate())
             property.addSample(tempTime, point3)
 
             graphic.position = property
         }
         onMounted(() => {
-            let graphicLayer
-            graphicLayer = new mars3d.layer.GraphicLayer()
-            map.value.addLayer(graphicLayer)
+            graphicLayer.value = new mars3d.layer.GraphicLayer()
+            map.value.addLayer(graphicLayer.value)
 
-            addDemoGraphic1(graphicLayer)
-            addDemoGraphic2(graphicLayer)
-            addDemoGraphic3(graphicLayer)
-            addDemoGraphic4(graphicLayer)
-            addDemoGraphic5(graphicLayer)
-            addDemoGraphic6(graphicLayer)
-            addDemoGraphic7(graphicLayer)
-            addDemoGraphic8(graphicLayer)
-            addDemoGraphic9(graphicLayer)
-            addDemoGraphic10(graphicLayer)
-            addDemoGraphic11(graphicLayer)
+            addDemoGraphic1()
+            addDemoGraphic2()
+            addDemoGraphic3()
+            addDemoGraphic4()
+            addDemoGraphic5()
+            addDemoGraphic6()
+            addDemoGraphic7()
+            addDemoGraphic8()
+            addDemoGraphic9()
+            addDemoGraphic10()
+            addDemoGraphic11()
             console.log("mark加载")
         })
         onUnmounted(() => {
-            let graphicLayer
-            graphicLayer = new mars3d.layer.GraphicLayer()
-            graphicLayer.removeAll()
+            graphicLayer.value!.remove()
         })
         return {
             ...toRefs(state),
