@@ -30,7 +30,7 @@ export default {
         const addMaskGraphics = () => {
             maskLayer = new mars3d.layer.GeoJsonLayer({
                 name: "天津",
-                url: "https://geo.datav.aliyun.com/areas_v3/bound/120000_full.json",
+                url: "config/120000_full.json",
                 symbol: {
                     type: "polygon",
                     styleOptions: {
@@ -81,7 +81,7 @@ export default {
         const showBoundaryWall = () => {
             wallLayer = new mars3d.layer.GeoJsonLayer({
                 name: "天津",
-                url: "https://geo.datav.aliyun.com/areas_v3/bound/120000_full.json",
+                url: "config/120000_full.json",
                 symbol: {
                     type: "wall",
                     styleOptions: {
